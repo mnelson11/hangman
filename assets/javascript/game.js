@@ -3,6 +3,8 @@
 //number of turns left is also provided 
 //user types in a letter to guess, computer replaces blanks with corresponding letter
 
+
+
 var letters=["a", "b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var words=["cat","dog","shit", "fuck","animal"];
 var lettersGuessed=[];//array to hold all guesses made by user
@@ -12,6 +14,8 @@ var underscoreString = computerGuess.replace(/[a-zA-Z]/,"_");
 var numGuesses=0;
 var counter=0; //keep track if any letters worked
 var dashArray=[];
+var lives=10;
+
 
 //var html=document.getElementById("game");
 //var dashWord=document.getElementById("word");
@@ -28,16 +32,25 @@ document.onkeyup=function()
 {
 	var userguess = String.fromCharCode(event.keyCode).toLowerCase();
 	var numOfLetter=0;
+	var letterQ=false;
+
 	
 
 
 
 	//push letters guessed into an array that appears on screen
-	lettersGuessed.push(userguess);
-	lettersGuessed.forEach(function(element){
-		return element;
+
+	for(var i=0;i<letters.length;i++){
+		if(letters[i]==userguess){
+			letterQ=true;
+			lettersGuessed.push(userguess);
+			lettersGuessed.forEach(function(element){
+			return element;
 	//console.log(element);
+
 	});
+}else {var letterQ=false;}
+}
 	
 	
 
@@ -50,44 +63,58 @@ document.onkeyup=function()
 			dashArray[i]=userguess;
 		} 
 	}		
-	if(counter==0){
+	if(counter==0 && letterQ==true){
 		numGuesses++; 
+		lives--;
 		//alert("number of guesses: "+numGuesses);
 		}
+	else if (counter==1)
+		{counter=0;}
 
 	
 	
-
+for(var i=0;i<dashArray.length;i++){
+	if(dashArray[i]!="_"){alert("You, a human, have beaten me, the machine"); }else{
 
 	//computer displays underscores coorelating to number of letters
 
-	html="Type the letter you want to guess!"+"<p>"+"there are "+numOfLetter+" "+userguess+"'s"+"</p>";
+	html="Type the letter you want to guess!"+"<p>"+"there are "+numOfLetter+" "+userguess+"'s"+"</p>"+"<br>Letters You have Guessed: <br>";
 	document.querySelector('#game').innerHTML = html;
 
+
 	for(i=0;i<lettersGuessed.length;i++){
-	 	var newDiv = document.createElement('div');
-	 	game.appendChild(newDiv);
-	 	newDiv.innerHTML=lettersGuessed[i];
+	 	var newSpan = document.createElement('span');
+	 	game.appendChild(newSpan);
+	 	newSpan.innerHTML=lettersGuessed[i]+", ";
 	 	//shows letters guessed
 	 }
+	 	var spaceDiv = document.createElement('div');
+	 	game.appendChild(spaceDiv);
+	 	spaceDiv.innerHTML="<br>Here is your word<br>";
 
 	
 	 for(i=0;i<dashArray.length;i++){
-	 	var wordDiv = document.createElement('div');
-	 	game.appendChild(wordDiv);
-	 	wordDiv.innerHTML=dashArray[i];
+	 	var wordSpan = document.createElement('span');
+	 	game.appendChild(wordSpan);
+	 	wordSpan.innerHTML=dashArray[i]+" ";
 
 	 }
+	  var lifeDiv = document.createElement('div');
+	  game.appendChild(lifeDiv);
+	  lifeDiv.innerHTML="Lives: "+lives;
 
-
+	  if(lives==0){
+	 	alert("You Lose, the computer has surpassed the human at hangman");
+	  }
+	}
+	}
 	
 }
+
 
 
 
 	
 
 	//send final info back to HTML so that it appears on screen 
-
-
 

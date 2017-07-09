@@ -1,0 +1,10 @@
+body{
+	text-align: center;
+	background: grey;
+	color: white;
+	font-family: times;
+}
+#game{background: blue;
+	color: white;
+	width: 50%;
+	alignment-baseline: center;}
