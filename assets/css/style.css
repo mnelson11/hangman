@@ -1,10 +1,14 @@
 body{
 	text-align: center;
-	background: grey;
+	background: url(https://i.ytimg.com/vi/Q2-0w0YrsfA/maxresdefault.jpg);
 	color: white;
 	font-family: times;
 }
 #game{background: blue;
 	color: white;
 	width: 50%;
-	alignment-baseline: center;}
+	float:center;
+	border-top: 100px;
+	margin-top: 100px;
+	}
+

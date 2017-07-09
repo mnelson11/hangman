@@ -6,7 +6,7 @@
 
 
 var letters=["a", "b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-var words=["cat","dog","shit", "fuck","animal"];
+var words=["catfish","penguin","bubble", "crab","lobster","ocean","atlantis","death"];
 var lettersGuessed=[];//array to hold all guesses made by user
 var computerGuess = words[Math.floor(Math.random()*words.length)];
 var wordLength = computerGuess.length;
@@ -14,6 +14,7 @@ var numGuesses=0;
 var counter=0; //keep track if any letters worked
 var dashArray=[];
 var lives=10;
+
 
 
 
@@ -30,25 +31,33 @@ for (var i =0;i<computerGuess.length;i++) {
 
 document.onkeyup=function()
 {
+
 	var userguess = String.fromCharCode(event.keyCode).toLowerCase();
 	var numOfLetter=0;
 	var letterQ=false;
+	var guessedAlready=false;
+
+
 
 	
-
-
-
-
 	//push letters guessed into an array that appears on screen
 
+	for(var a=0;a<lettersGuessed.length;a++){
+				if(userguess==lettersGuessed[a]){
+					guessedAlready=true;
+				}
+	}
+
 	for(var i=0;i<letters.length;i++){
-		if(letters[i]==userguess){
+		if(letters[i]==userguess)
+		{		
 			letterQ=true;
 			lettersGuessed.push(userguess);
 			lettersGuessed.forEach(function(element){
 			return element;
 			//console.log(element);
 			});	
+			
 		}
 	}
 	
@@ -77,7 +86,7 @@ document.onkeyup=function()
 
 	
 
-	html="Type the letter you want to guess!"+"<p>"+"there are "+numOfLetter+" "+userguess+"'s"+"</p>"+"<br>Letters You have Guessed: <br>";
+	html="<p>Type the letter you want to guess!</p> <p> Letters You have Guessed: </p><br>";
 	document.querySelector('#game').innerHTML = html;
 
 
@@ -103,7 +112,7 @@ document.onkeyup=function()
 	  lifeDiv.innerHTML="Lives: "+lives;
 
 	  if(lives==0){
-	 	alert("You Lose, the computer has surpassed the human at hangman");
+	 	alert("You Lose, the computer has surpassed the human at hangman! The word was "+computerGuess);
 	  }
 
 	 
@@ -116,17 +125,20 @@ document.onkeyup=function()
 		}
 	}
 	if(complete){
-		alert("you win! I can't believe it!");
-		index.html.reload();
+		alert("you win! I can't believe it! the word was "+computerGuess);
+		location.reload();
 	}
 	
+	if (lives===0){
+		location.reload();
+	}
 	
 
 	  	
 	  
 	 
-	
-	}
+
+}
 	
 
 
