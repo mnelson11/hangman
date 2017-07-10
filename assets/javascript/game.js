@@ -6,7 +6,7 @@
 
 
 var letters=["a", "b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-var words=["catfish","penguin","bubble", "crab","lobster","ocean","atlantis","death"];
+var words=["penguin","bubble", "crab","lobster","ocean","atlantis","death","fish","coral","wave","lighthouse","shark"];
 var lettersGuessed=[];//array to hold all guesses made by user
 var computerGuess = words[Math.floor(Math.random()*words.length)];
 var wordLength = computerGuess.length;
@@ -14,7 +14,7 @@ var numGuesses=0;
 var counter=0; //keep track if any letters worked
 var dashArray=[];
 var lives=10;
-
+var refresh=false
 
 
 
@@ -45,19 +45,20 @@ document.onkeyup=function()
 	for(var a=0;a<lettersGuessed.length;a++){
 				if(userguess==lettersGuessed[a]){
 					guessedAlready=true;
-				}
+					//alert("wow you already guessed "+userguess+". Try and be more original");	
+				}	
 	}
 
 	for(var i=0;i<letters.length;i++){
 		if(letters[i]==userguess)
-		{		
-			letterQ=true;
-			lettersGuessed.push(userguess);
-			lettersGuessed.forEach(function(element){
-			return element;
-			//console.log(element);
-			});	
-			
+		{	if(guessedAlready==false){	
+				letterQ=true;
+				lettersGuessed.push(userguess);
+				lettersGuessed.forEach(function(element){
+				return element;
+				//console.log(element);
+				});	
+			}
 		}
 	}
 	
@@ -77,7 +78,7 @@ document.onkeyup=function()
 		lives--;
 		//alert("number of guesses: "+numGuesses);
 		}
-	else if (counter==1)
+	else 
 		{counter=0;}
 
 	
@@ -109,14 +110,10 @@ document.onkeyup=function()
 	 }
 	  var lifeDiv = document.createElement('div');
 	  game.appendChild(lifeDiv);
-	  lifeDiv.innerHTML="Lives: "+lives;
-
-	  if(lives==0){
-	 	alert("You Lose, the computer has surpassed the human at hangman! The word was "+computerGuess);
-	  }
+	  lifeDiv.innerHTML="Guesses left: "+lives;
 
 	 
-	 var dash="_";
+	 
 	 var complete=true;
 
 	for(var i =0;i<dashArray.length;i++){
@@ -125,14 +122,28 @@ document.onkeyup=function()
 		}
 	}
 	if(complete){
-		alert("you win! I can't believe it! the word was "+computerGuess);
-		location.reload();
+		wins++;
+		// game.appendChild(spaceDiv);
+	 // spaceDiv.innerHTML=computerGuess;
+		alert("you have won! I can't believe it! Beaten by a human...You identfied the word '"+computerGuess)+"'";
+		refresh();
 	}
 	
-	if (lives===0){
-		location.reload();
-	}
+	  if (lives===0){
+	  	loses++
+	   // game.appendChild(spaceDiv);
+	 	 // spaceDiv.innerHTML=computerGuess;
+	 	alert("You have lost, the computer has surpassed the human at hangman! The word was "+computerGuess);
+		//html="<p>The Word was: "+computerGuess" </p><br>";
+	 	//document.querySelector('#game').innerHTML = html;
+	 	refresh();
+	 }
 	
+	function refresh(){	
+		location.reload();
+		
+		
+	}
 
 	  	
 	  
