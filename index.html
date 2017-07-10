@@ -9,10 +9,18 @@
 </head>
 	<body>
 		<h1>Hangman</h1>
+		<h2>Pssst...It's ocean themed</h2>
 		<input name="refresh" type="button" value="New Game" onClick="location.reload()">
 		<div id="game">
-			<p class="lettersGuessed">Push enter to start game!</p>
-			<p>Pssssst....It's ocean themed</p>
+			<p>Type the letter you want to guess!</p>
+			<p>Wins: <span id="wins"></span></p>
+			<p>Letters You Have Guessed:</p>
+			<p id="guessedLetters"></p>
+			<p>Here is your word</p>
+			<p id="wordToGuess"></p>
+			<p>Guesses Left: <span id="lives"></span></p>
+<!-- 			<p> class="lettersGuessed">Push enter to start game!</p>
+ -->			
 		</div>
 		
 	</body>
