@@ -6,7 +6,7 @@
 
 
 var letters=["a", "b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-var words=["penguin","bubble", "crab","lobster","ocean","atlantic","seahorse","fish","coral","wave","lighthouse","shark","pacific","jellyfish","trash","turtle","sand"];
+var words=["bubble","ocean","atlantic","seahorse","fish","coral","wave","lighthouse","shark","jellyfish","trash","turtle","sand"];
 var lettersGuessed=[];//array to hold all guesses made by user
 var computerGuess = words[Math.floor(Math.random()*words.length)];
 var wordLength = computerGuess.length;
