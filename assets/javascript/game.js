@@ -143,7 +143,7 @@ document.onkeyup=function()
 		// game.appendChild(spaceDiv);
 	 // spaceDiv.innerHTML=computerGuess;
 		alert("you have won! I can't believe it! Beaten by a human...You identfied the word '"+computerGuess+"'");
-		alert("Wins: "+wins+". Push ENTER to play again.");
+		alert("Push ENTER to play again.");
 		reset();
 		
 }
@@ -153,7 +153,7 @@ document.onkeyup=function()
 	   // game.appendChild(spaceDiv);
 	 	 // spaceDiv.innerHTML=computerGuess;
 	 	alert("You have lost, the computer has surpassed the human at hangman! The word was '"+computerGuess+"'");
-	 	alert("Wins: "+wins+". Push ENTER to play again.");
+	 	alert("Push ENTER to play again.");
 	 	reset();
 		//html="<p>The Word was: "+computerGuess" </p><br>";
 	 	//document.querySelector('#game').innerHTML = html;
