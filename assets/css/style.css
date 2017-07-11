@@ -8,7 +8,6 @@ body{
 }
 #game{
 	color: white;
-	border-style: dotted solid dashed;
 	float:center;
 	border-top: 100px;
 	text-align: center;
