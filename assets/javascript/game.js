@@ -6,7 +6,7 @@
 
 
 var letters=["a", "b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-var words=["penguin","bubble", "crab","lobster","ocean","atlantic","seahorse","fish","coral","wave","lighthouse","shark","pacific"];
+var words=["penguin","bubble", "crab","lobster","ocean","atlantic","seahorse","fish","coral","wave","lighthouse","shark","pacific","jellyfish","trash","turtle","sand"];
 var lettersGuessed=[];//array to hold all guesses made by user
 var computerGuess = words[Math.floor(Math.random()*words.length)];
 var wordLength = computerGuess.length;
@@ -14,47 +14,49 @@ var numGuesses=0;
 var counter=0; //keep track if any letters worked
 var dashArray=[];
 var lives=10;
-var refresh=false
 var wins=0;
 
-document.addEventListener("DOMContentLoaded",function(event)
-{
-	gameElem=document.getElementById("guessedLetters");
-	wordToGuessElem=document.getElementById("wordToGuess");
-	livesElem=document.getElementById("lives");
-	winElem =document.getElementById("wins");
-
-	for(var i=0;i<computerGuess.length;i++){
-		dashArray.push("_");
-		var wordSpan = document.createElement('span');
-		wordSpan.innerHTML=dashArray[i]+" ";
-		wordToGuessElem.appendChild(wordSpan);
-	}
-	livesElem.innerHTML=lives;
-	winElem.innerHTML=wins;
-});
 
 
+	
 
-//var html=document.getElementById("game");
-//var dashWord=document.getElementById("word");
+	document.addEventListener("DOMContentLoaded",function(event)
+	{	
+		gameElem=document.getElementById("guessedLetters");
+		wordToGuessElem=document.getElementById("wordToGuess");
+		livesElem=document.getElementById("lives");
+		winElem =document.getElementById("wins");
 
 
-// for (var i =0;i<computerGuess.length;i++) {
-// 	dashArray.push("_");
-// 	console.log(dashArray[i]);
-// }
+		for(var i=0;i<computerGuess.length;i++){
+			dashArray.push("_");
+			var wordSpan = document.createElement('span');
+			wordSpan.innerHTML=dashArray[i]+" ";
+			wordToGuessElem.appendChild(wordSpan);
+		}
+		livesElem.innerHTML=lives;
+		winElem.innerHTML=wins;
+		
+		
+	});
+
+
+
+
 
 
 
 document.onkeyup=function()
-{
+{	
 
 	var userguess = String.fromCharCode(event.keyCode).toLowerCase();
 	var numOfLetter=0;
 	var letterQ=false;
 	var guessedAlready=false;
 
+
+
+	
 
 	
 	//push letters guessed into an array that appears on screen
@@ -79,7 +81,6 @@ document.onkeyup=function()
 		}
 	}
 	
-	
 
 	// compares letters guessed with letters in the word 
 	
@@ -102,9 +103,7 @@ document.onkeyup=function()
 
 	//computer displays underscores coorelating to number of letters
 
-	
-
-	html="<p>Type the letter you want to guess!</p> <p> Letters You have Guessed: </p><br>";
+	html="<p>Type the letter you want to guess!</p><p>Wins: "+wins+"</p> <p> Letters You have Guessed: </p>";
 	document.querySelector('#game').innerHTML = html;
 
 
@@ -135,45 +134,60 @@ document.onkeyup=function()
 
 	for(var i =0;i<dashArray.length;i++){
 		if(dashArray[i]==="_"){
-			complete=false;
-		}
+			 complete=false;
+		} 
 	}
 
 	if(complete){
 		wins++;
 		// game.appendChild(spaceDiv);
 	 // spaceDiv.innerHTML=computerGuess;
-		alert("you have won! I can't believe it! Beaten by a human...You identfied the word '"+computerGuess)+"'";
-		alert("Wins: "+wins);
-		return wins
+		alert("you have won! I can't believe it! Beaten by a human...You identfied the word '"+computerGuess+"'");
+		alert("Wins: "+wins+". Push ENTER to play again.");
+		reset();
 		
-	}
+}
 	
 	  if (lives===0){
 	  	
 	   // game.appendChild(spaceDiv);
 	 	 // spaceDiv.innerHTML=computerGuess;
-	 	alert("You have lost, the computer has surpassed the human at hangman! The word was "+computerGuess);
-	 	alert("Wins: "+wins);
+	 	alert("You have lost, the computer has surpassed the human at hangman! The word was '"+computerGuess+"'");
+	 	alert("Wins: "+wins+". Push ENTER to play again.");
+	 	reset();
 		//html="<p>The Word was: "+computerGuess" </p><br>";
 	 	//document.querySelector('#game').innerHTML = html;
 	 	
-	 }
-	
-	
-	 
-	  	
-	  
-	 
-
+	 	
+	}	
 }
+
+
+	function reset(){
+				
+		lettersGuessed=[];//array to hold all guesses made by user
+		computerGuess = words[Math.floor(Math.random()*words.length)];
+		numGuesses=0;
+		counter=0; //keep track if any letters worked
+		dashArray=[];
+		lives=10;
+		computerGuess = words[Math.floor(Math.random()*words.length)];
+		
 	
+		// gameElem=document.getElementById("guessedLetters");
+		// wordToGuessElem=document.getElementById("wordToGuess");
+		// livesElem=document.getElementById("lives");
+		// winElem =document.getElementById("wins");
 
+		for(var i=0;i<computerGuess.length;i++){
+			dashArray.push("_");
+			var wordSpan = document.createElement('span');
+			wordSpan.innerHTML=dashArray[i]+" ";
+			//wordToGuessElem.appendChild(wordSpan);
+		}
+		//livesElem.innerHTML=lives;
+		//winElem.innerHTML=wins;
 
+	}
 
-
-
-	
-
-	//send final info back to HTML so that it appears on screen 
 

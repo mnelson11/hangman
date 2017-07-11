@@ -3,14 +3,16 @@
 <head>
 	<title>Hangman</title>
 	<script type="text/javascript" src="assets/javascript/game.js"></script>
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
 	<link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
 </head>
 	<body>
 		<h1>Hangman</h1>
 		<h2>Pssst...It's ocean themed</h2>
-		<input name="refresh" type="button" value="New Game" onClick="location.reload()">
+		<input name="refresh" type="button" value="Reset" onClick="location.reload()">
+		<br>
 		<div id="game">
 			<p>Type the letter you want to guess!</p>
 			<p>Wins: <span id="wins"></span></p>
